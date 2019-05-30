@@ -33,5 +33,5 @@ scs_solver = JuMP.with_optimizer(SCS.Optimizer, max_iters=500000, acceleration_l
 network_data = PowerModels.parse_file("data/matpower/case5_tnep.m")
 PowerModels.print_summary(network_data)
 
-result = run_tnep("data/matpower/case5_tnep.m", ACPPowerModel, juniper_solver,setting = Dict("output" => Dict("branch_flows" => true)))
+result = run_tnep(network_data, ACPPowerModel, juniper_solver,setting = Dict("output" => Dict("branch_flows" => true)))
 PowerModels.print_summary(result["solution"])
