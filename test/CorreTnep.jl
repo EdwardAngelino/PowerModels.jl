@@ -28,7 +28,7 @@ ipopt_ws_solver = JuMP.with_optimizer(Ipopt.Optimizer, tol=1e-6, mu_init=1e-4, p
 
 #cbc_solver = JuMP.with_optimizer(Cbc.Optimizer, logLevel=0)
 #xmip_solver = JuMP.with_optimizer(AmplNLWriter.Optimizer, Ipopt.amplexe, ["print_level=0"])   # prueba corre con Ipopt
-xmip_solver = JuMP.with_optimizer(AmplNLWriter.Optimizer,"/Users/Edward/Downloads/couenne-osx/couenne", ["print_level=0"])
+xmip_solver = JuMP.with_optimizer(AmplNLWriter.Optimizer,"/Users/Edward/Downloads/couenne-osx/couenne", ["tol=1e-4", "print_level=0"])
 #xmip_solver = JuMP.with_optimizer(AmplNLWriter.Optimizer,"/Users/Edward/Downloads/bonmin-osx/bonmin", ["print_level=0"])
 
 xnl_solver=JuMP.with_optimizer(Ipopt.Optimizer, tol=1e-4, print_level=0)
@@ -38,7 +38,7 @@ juniper_solver = JuMP.with_optimizer(Juniper.Optimizer, nl_solver=xmip_solver, m
 scs_solver = JuMP.with_optimizer(SCS.Optimizer, max_iters=500000, acceleration_lookback=1, verbose=0)
 
 #include("common.jl")
-network_data = PowerModels.parse_file("data/matpower/case5_tnep.m")
+network_data = PowerModels.parse_file("data/matpower/case3_tnep.m")
 PowerModels.print_summary(network_data)
 
 result = run_tnep(network_data, ACPPowerModel, juniper_solver,setting = Dict("output" => Dict("branch_flows" => true)))
