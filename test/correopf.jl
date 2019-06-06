@@ -32,8 +32,12 @@ ipopt_ws_solver = JuMP.with_optimizer(Ipopt.Optimizer, tol=1e-6, mu_init=1e-4, p
 
 scs_solver = JuMP.with_optimizer(SCS.Optimizer, max_iters=500000, acceleration_lookback=1, verbose=0)
 
-data = PowerModels.parse_file("data/matpower/case6.m")
+
+#data = PowerModels.parse_file("data/matpower/case3.m")
+data = PowerModels.parse_file("data/pti/case3.raw"; import_all=true)
 PowerModels.print_summary(data)
+
+print("resultados\n-----------------\n")
 result = run_ac_opf(data, ipopt_solver,setting = Dict("output" => Dict("branch_flows" => true)))
-#result = run_opf(data, SOCWRPowerModel,  ipopt_solver,setting = Dict("output" => Dict("branch_flows" => true)))
-PowerModels.print_summary(result["solution"])
+#result = run_opf(data, QCWRPowerModel,  ipopt_solver,setting = Dict("output" => Dict("branch_flows" => true)))
+#PowerModels.print_summary(result["solution"])

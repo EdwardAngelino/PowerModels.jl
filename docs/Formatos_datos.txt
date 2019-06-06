@@ -1,0 +1,4 @@
+MATPOWER
+https://www.pserc.cornell.edu/matpower/docs/ref/matpower6.0/caseformat.html
+PTI
+https://labs.ece.uw.edu/pstca/formats/pti.txt
